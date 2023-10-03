@@ -1,6 +1,7 @@
 /* A standard layout for the Dactyl Manuform 5x6 Keyboard */ 
 
 #include QMK_KEYBOARD_H
+#include "secrets.h"
 
 enum custom_keycodes {
   ST_MACRO_0 = SAFE_RANGE,
@@ -193,9 +194,9 @@ void dance_rshft_finished(tap_dance_state_t *state, void *user_data) {
   switch (state->count) {
     case 2: SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_3)); break;
     case 3: SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_4)); break;
-    case 4: SEND_STRING("DgN).U8y@B" SS_TAP(X_ENTER)); break; //SS_TAP(X_ENTER)
-    case 5: SEND_STRING("Sep27th@@" SS_TAP(X_ENTER)); break; 
-    case 6: SEND_STRING("f^r]U@RW7)"); break; //old windows password
+    case 4: send_string(PASSWORD1); SEND_STRING(SS_TAP(X_ENTER)); break; //SS_TAP(X_ENTER)
+    case 5: send_string(PASSWORD2); SEND_STRING(SS_TAP(X_ENTER)); break;
+    case 6: send_string(PASSWORD3); SEND_STRING(SS_TAP(X_ENTER)); break; //old windows password
     case 7: reset_keyboard();
     default: register_code(KC_RSFT);
   }
@@ -338,9 +339,6 @@ tap_dance_action_t tap_dance_actions[] = {
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(1,KC_Z):
-            // Immediately select the hold action when another key is pressed.
-            return true;
-        case LT(2,KC_X):
             // Immediately select the hold action when another key is pressed.
             return true;
         case ALT_T(KC_ENT):

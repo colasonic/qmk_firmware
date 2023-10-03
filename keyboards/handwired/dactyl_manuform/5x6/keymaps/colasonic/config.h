@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define EE_HANDS
 #define TAPPING_TOGGLE 2
 //auto shift
-#define AUTO_SHIFT_TIMEOUT 150
+#define AUTO_SHIFT_TIMEOUT 175
 #define NO_AUTO_SHIFT_SPECIAL
 #define RETRO_SHIFT 500
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
