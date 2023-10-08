@@ -196,7 +196,7 @@ void dance_rshft_finished(tap_dance_state_t *state, void *user_data) {
     case 3: SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_4)); break;
     case 4: send_string(PASSWORD1); SEND_STRING(SS_TAP(X_ENTER)); break; //SS_TAP(X_ENTER)
     case 5: send_string(PASSWORD2); SEND_STRING(SS_TAP(X_ENTER)); break;
-    case 6: send_string(PASSWORD3); SEND_STRING(SS_TAP(X_ENTER)); break; //old windows password
+    case 6: send_string(PASSWORD3); break; //old windows password
     case 7: reset_keyboard();
     default: register_code(KC_RSFT);
   }
