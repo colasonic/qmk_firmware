@@ -13,3 +13,4 @@ AUDIO_ENABLE = no           # Audio output
 SPLIT_KEYBOARD = yes
 TAP_DANCE_ENABLE = yes
 AUTO_SHIFT_ENABLE = yes
+SRC += features/layer_lock.c # LLOCK

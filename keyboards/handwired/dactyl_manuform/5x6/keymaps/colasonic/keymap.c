@@ -2,6 +2,7 @@
 
 #include QMK_KEYBOARD_H
 #include "secrets.h"
+#include "features/layer_lock.h" //LLOCK
 
 enum custom_keycodes {
   ST_MACRO_0 = SAFE_RANGE,
@@ -17,6 +18,7 @@ enum custom_keycodes {
   ST_MACRO_10,
   ST_MACRO_11,
   ST_MACRO_12,
+  LLOCK,
 };
 //Tap Dance Declarations
 enum {
@@ -89,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  	TO(0)  ,	_______,	KC_P1 ,     KC_P2 ,     KC_P3 ,			ST_MACRO_9,               	_______,	_______,		_______,	_______,		_______,	_______,
                           	KC_DOT,			KC_COMM,            																		_______,	_______,
                                                	LGUI(LCTL(KC_LEFT)),LGUI(LCTL(KC_RGHT)),            							KC_MS_BTN1,	KC_MS_BTN2,
-                                               	_______,			_______,            										KC_PGUP,  	KC_PGDN,
+                                               	_______,			LLOCK,            										KC_PGUP,  	KC_PGDN,
                                                	_______,			_______,            										_______,	_______
   ),
   [4] = LAYOUT_5x6(
@@ -105,6 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_layer_lock(keycode, record, LLOCK)) { return false; } //LLOCK
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {
