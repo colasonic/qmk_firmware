@@ -81,17 +81,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           	_______,			_______,            																		KC_EQL ,	_______,
                                                	KC_PGUP,            KC_PGDN,            										_______,	_______,
                                                	_______,			LALT(LCTL(KC_END)),            								_______,	_______,
-                                               	ST_MACRO_11,		_______,            										LGUI(KC_L),	ST_MACRO_8
+                                               	ST_MACRO_11,		LLOCK,            										LGUI(KC_L),	ST_MACRO_8
   ),
 
   [3] = LAYOUT_5x6(
    	_______,	_______,	_______,			_______, 			_______, 			_______,                  	_______, 	_______, 		_______, 	_______,		_______,	_______,
-    _______,	_______,	KC_P7 ,   KC_P8 ,     KC_P9 ,			_______,                    _______,	KC_MS_WH_UP,	KC_MS_UP,	KC_MS_WH_DOWN,	_______,	_______,
-  	_______,	_______,	KC_P4 ,    KC_P5 ,     KC_P6 ,			_______,                 	_______,	KC_MS_LEFT,		KC_MS_DOWN,	KC_MS_RIGHT,	_______,	_______,
- 	TO(0)  ,	_______,	KC_P1 ,     KC_P2 ,     KC_P3 ,			ST_MACRO_9,               	_______,	_______,		_______,	_______,		_______,	_______,
-                          	KC_DOT,			KC_COMM,            																		_______,	_______,
+    _______,	_______,	_______,          _______,            _______,			_______,                    _______,	KC_MS_WH_UP,	KC_MS_UP,	KC_MS_WH_DOWN,	_______,	_______,
+  	_______,	_______,	_______,           _______,            _______,			_______,                 	_______,	KC_MS_LEFT,		KC_MS_DOWN,	KC_MS_RIGHT,	_______,	_______,
+ 	TO(0)  ,	_______,	_______,            _______,            _______,			ST_MACRO_9,               	_______,	_______,		_______,	_______,		_______,	_______,
+                          	_______,            _______,            																		_______,	_______,
                                                	LGUI(LCTL(KC_LEFT)),LGUI(LCTL(KC_RGHT)),            							KC_MS_BTN1,	KC_MS_BTN2,
-                                               	_______,			LLOCK,            										KC_PGUP,  	KC_PGDN,
+                                               	_______,			_______,            										KC_PGUP,  	KC_PGDN,
                                                	_______,			_______,            										_______,	_______
   ),
   [4] = LAYOUT_5x6(
@@ -197,8 +197,8 @@ void dance_rshft_finished(tap_dance_state_t *state, void *user_data) {
   switch (state->count) {
     case 2: SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_3)); break;
     case 3: SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_4)); break;
-    case 4: send_string(PASSWORD1); SEND_STRING(SS_TAP(X_ENTER)); break; //SS_TAP(X_ENTER)
-    case 5: send_string(PASSWORD2); SEND_STRING(SS_TAP(X_ENTER)); break;
+    case 4: send_string(PASSWORD1); SEND_STRING(SS_TAP(X_ENTER)); break; // SEND_STRING(SS_TAP(X_ENTER));
+    case 5: send_string(PASSWORD2); SEND_STRING(SS_TAP(X_ENTER)); break; // SEND_STRING(SS_TAP(X_ENTER));
     case 6: send_string(PASSWORD3); break; //old windows password
     case 7: reset_keyboard();
     default: register_code(KC_RSFT);
