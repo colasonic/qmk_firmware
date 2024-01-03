@@ -90,8 +90,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [3] = LAYOUT_5x6(
    	_______,	_______,	_______,			_______, 			_______, 			_______,                  	_______, 	_______, 		_______, 	_______,		_______,	_______,
-    _______,	_______,	_______,           TD(KC_UP_CTL),       _______,			_______,                    _______,	KC_MS_WH_UP,	KC_MS_UP,	KC_MS_WH_DOWN,	_______,	_______,
-  	_______,	_______,	TD(KC_LEFT_CTL),   TD(KC_DOWN_CTL),     TD(KC_RGHT_CTL),	_______,                 	_______,	KC_MS_LEFT,		KC_MS_DOWN,	KC_MS_RIGHT,	_______,	_______,
+    _______,	LCTL(KC_Q),	_______,           TD(KC_UP_CTL),       _______,			_______,                    _______,	KC_MS_WH_UP,	KC_MS_UP,	KC_MS_WH_DOWN,	_______,	_______,
+  	_______,	LALT(KC_1),	TD(KC_LEFT_CTL),   TD(KC_DOWN_CTL),     TD(KC_RGHT_CTL),	_______,                 	_______,	KC_MS_LEFT,		KC_MS_DOWN,	KC_MS_RIGHT,	_______,	_______,
  	TO(0)  ,	_______,	_______,            _______,            _______,			ST_MACRO_9,               	_______,	_______,		_______,	_______,		_______,	_______,
                           	_______,            _______,            																		_______,	_______,
                                                	LGUI(LCTL(KC_LEFT)),LGUI(LCTL(KC_RGHT)),            							KC_MS_BTN1,	KC_MS_BTN2,
