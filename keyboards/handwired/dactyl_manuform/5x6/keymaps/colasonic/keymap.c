@@ -292,7 +292,7 @@ void kc3_finished(tap_dance_state_t *state, void *user_data) {
             unregister_code(KC_LCTL);
 
             // Short delay to ensure the keys are processed
-            _delay_ms(100);
+            _delay_ms(500);
 
             // Press Alt+F4
             register_code(KC_LALT);
