@@ -287,12 +287,13 @@ void kc3_finished(tap_dance_state_t *state, void *user_data) {
             // Press Ctrl+Alt+Home
             register_code(KC_LCTL);
             register_code(KC_LALT);
+            _delay_ms(100);
             tap_code(KC_HOME);
             unregister_code(KC_LALT);
             unregister_code(KC_LCTL);
 
             // Short delay to ensure the keys are processed
-            _delay_ms(500);
+            _delay_ms(200);
 
             // Press Alt+F4
             register_code(KC_LALT);
@@ -322,7 +323,7 @@ void end_finished(tap_dance_state_t *state, void *user_data) {
     switch (stap_state.state) {
         case SINGLE_TAP: register_code(KC_END); break;
         case SINGLE_HOLD: register_code(KC_LCTL); register_code(KC_END); break;
-        case DOUBLE_TAP: register_code(KC_LCTL); register_code(KC_LALT); register_code(KC_HOME); break;
+        case DOUBLE_TAP: register_code(KC_LCTL); register_code(KC_LALT); _delay_ms(100); register_code(KC_HOME); break;
         case DOUBLE_HOLD: register_code(KC_LCTL); register_code(KC_HOME);
     }
 }
@@ -331,7 +332,7 @@ void end_reset(tap_dance_state_t *state, void *user_data) {
     switch (stap_state.state) {
         case SINGLE_TAP: unregister_code(KC_END); break;
         case SINGLE_HOLD: unregister_code(KC_END); unregister_code(KC_LCTL); break;
-        case DOUBLE_TAP: unregister_code(KC_HOME); unregister_code(KC_LALT); unregister_code(KC_LCTL); break;
+        case DOUBLE_TAP: unregister_code(KC_HOME); _delay_ms(100); unregister_code(KC_LALT); unregister_code(KC_LCTL); break;
         case DOUBLE_HOLD: unregister_code(KC_HOME); unregister_code(KC_LCTL);
     }
     stap_state.state = 0;

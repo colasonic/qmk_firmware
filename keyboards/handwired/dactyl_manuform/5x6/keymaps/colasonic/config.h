@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define MASTER_LEFT
 //#define MASTER_RIGHT
-#define TAPPING_TERM 500 //this is for some high latency connections like vpn
+#define TAPPING_TERM 200 //this is for some high latency connections like vpn
 //#define EE_HANDS
 #define TAPPING_TOGGLE 2
 //auto shift
