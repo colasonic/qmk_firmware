@@ -14,3 +14,6 @@ SPLIT_KEYBOARD = yes
 TAP_DANCE_ENABLE = yes
 AUTO_SHIFT_ENABLE = yes
 SRC += features/layer_lock.c # LLOCK
+# for RP2040
+MCU = RP2040
+BOOTLOADER = rp2040
