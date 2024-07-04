@@ -18,6 +18,7 @@ enum custom_keycodes {
   ST_MACRO_10,
   ST_MACRO_11,
   ST_MACRO_12,
+  ST_MACRO_13,
   LLOCK,
 };
 //Tap Dance Declarations
@@ -69,18 +70,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TILD,	KC_EXLM,	     KC_AT,		    LCTL(LSFT(KC_3)),	LALT(KC_F4) ,		KC_PERC,                    KC_NUM,			KC_SLSH,	KC_ASTR,	KC_LPRN,	KC_RPRN,	KC_DEL,
      KC_CALC,	LALT(KC_2),	     LCTL(KC_W),    LCTL(LSFT(KC_F)),	ST_MACRO_0,			ST_MACRO_1,               	KC_CLR, 			KC_P7 , 	KC_P8 , 	KC_P9 ,		KC_MINS,	KC_PIPE,
      KC_CAPS,	LALT(KC_1),	     LALT(KC_R),	LALT(KC_S),			LSFT(KC_F9) ,		ST_MACRO_2,               	LCTL(LSFT(KC_M)), 	KC_P4 , 	KC_P5 , 	KC_P6 ,		KC_PLUS,	KC_BSLS,
-     TO(0)  ,	LALT(LSFT(KC_C)),ST_MACRO_3,	LCTL(KC_C),			LCTL(LSFT(KC_Y)),	LCTL(KC_V),               	_______, 			KC_P1 , 	KC_P2 , 	KC_P3 ,		KC_EQL ,	KC_UNDS,
+     TO(0)  ,	DM_RSTP,         ST_MACRO_3,	LCTL(KC_C),			LCTL(LSFT(KC_Y)),	LCTL(KC_V),               	_______, 			KC_P1 , 	KC_P2 , 	KC_P3 ,		KC_EQL ,	KC_UNDS,
                           	     KC_WBAK,		KC_WFWD,              												                        KC_COMM,	KC_DOT,
                                              	ST_MACRO_12,		KC_DELETE,          										KC_P0,		KC_P0,
-                                              	LALT(LCTL(KC_DELETE)),_______,													KC_PSCR,	KC_PAUSE,
-                                             	KC_PGUP,              KC_PGDN,            										KC_RBRC,	_______
+                                              	LALT(LCTL(KC_DELETE)),QK_LEAD,													KC_PSCR,	KC_PAUSE,
+                                             	DM_REC1,              DM_PLY1,            										KC_RBRC,	_______
 
   ),
 
   [2] = LAYOUT_5x6(
    	KC_F12 , 	KC_F1 , 	        KC_F2 , 			KC_F3 , 			KC_F4 , 			KC_F5 ,                  	KC_F6  , 	KC_F7 , 	KC_F8 , 	KC_F9 ,		KC_F10 ,	KC_F11 ,
     _______,	_______,	        LALT(KC_W),			ST_MACRO_4,			ST_MACRO_10,		KC_LBRC,                    KC_RBRC,	KC_INS ,	KC_UP,		_______,	KC_SCRL,	KC_MUTE,
-  	KC_F12 ,	LCTL(KC_F1),        LCTL(LSFT(KC_R)),	LCTL(KC_S),		    LCTL(KC_F3),		LCTL(KC_F5),                KC_RPRN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	_______,	KC_VOLU,
+  	ST_MACRO_13,LCTL(KC_F1),        LCTL(LSFT(KC_R)),	LCTL(KC_S),		    LCTL(KC_F3),		LCTL(KC_F5),                KC_RPRN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	_______,	KC_VOLU,
  	TO(0)  ,	LALT(LSFT(KC_R)),	ST_MACRO_5,			ST_MACRO_6,			ST_MACRO_9,			ST_MACRO_7,               	_______,	_______,	_______,	_______,	_______,	KC_VOLD,
                           	_______,			_______,            																		KC_EQL ,	_______,
                                                	KC_PGUP,            KC_PGDN,            										_______,	_______,
@@ -188,6 +189,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ST_MACRO_12:
     if (record->event.pressed) {
       SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_2));
+
+    }
+    break;
+    case ST_MACRO_13:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LSFT(SS_TAP(X_F10)) SS_DELAY(100) SS_TAP(X_A));
 
     }
     break;
@@ -475,5 +482,30 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         default:
             // Do not select the hold action when another key is pressed.
             return false;
+    }
+}
+
+//leader key
+void leader_start_user(void) {
+    // Do something when the leader key is pressed
+}
+
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_T)) {
+        // Leader, f => Types the below string
+      send_string_with_delay(PASSWORD1, 20);
+      SEND_STRING(SS_TAP(X_ENTER));
+    } else if (leader_sequence_two_keys(KC_D, KC_D)) {
+        // Leader, d, d => Ctrl+A, Ctrl+C
+        SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+    } else if (leader_sequence_three_keys(KC_D, KC_D, KC_S)) {
+        // Leader, d, d, s => Types the below string
+        SEND_STRING("https://start.duckduckgo.com\n");
+    } else if (leader_sequence_two_keys(KC_A, KC_S)) {
+        // Leader, a, s => GUI+S
+        tap_code16(LGUI(KC_S));
+    } else if (leader_sequence_two_keys(KC_T, KC_T)) {
+        send_string_with_delay(PASSWORD2,20);
+        SEND_STRING(SS_TAP(X_ENTER));
     }
 }

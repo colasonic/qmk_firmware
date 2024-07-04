@@ -1,6 +1,7 @@
 # Build Options
 #   change yes to no to disable
 #
+LEADER_ENABLE = yes
 BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
@@ -17,3 +18,4 @@ SRC += features/layer_lock.c # LLOCK
 # for RP2040
 MCU = RP2040
 BOOTLOADER = rp2040
+DYNAMIC_MACRO_ENABLE = yes
