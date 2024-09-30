@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      QK_GESC , 	KC_1      , 	KC_2  , 		TD(KC3_CTL),    TD(KC4_CTL),	KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,		KC_MINS,
      KC_TAB , 	KC_Q      ,		KC_W  , 		KC_F  , 		KC_P  , 		KC_B  ,                         KC_J  , KC_L  , KC_U  , KC_Y  , KC_SCLN  ,	KC_EQL,
      KC_BSPC, 	KC_A      , 	KC_R  , 		KC_S  , 		KC_T  , 		KC_G  ,                         KC_M  , KC_N  , KC_E  , KC_I  , KC_O  ,		KC_QUOT,
-     KC_LSFT, 	LT(1,KC_Z), 	LT(2,KC_X)  , 	LT(3,KC_C)  , 	KC_D  , 		KC_V  ,                         KC_K  , KC_H  ,	KC_COMM,KC_DOT ,KC_SLSH,	TD(CT_RSHFT),
+     KC_LSFT, 	LT(1,KC_Z), 	LT(2,KC_X)  , 	LT(3,KC_C)  , 	LT(4,KC_D)  , 	KC_V  ,                         KC_K  , KC_H  ,	KC_COMM,KC_DOT ,KC_SLSH,	TD(CT_RSHFT),
                           		KC_LCTL,		KC_LALT,                                                						TT(4),		KC_RCTL,
 			                                 	ALT_T(KC_ENT),	LCTL_T(KC_SPACE),                       				KC_SPACE, 		KC_ENT,
 			                                  	OSL(2), 		OSL(1),                									KC_PGUP,  		KC_PGDN,
@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_BSPC, 	KC_A      , 	KC_S  , 		KC_D  , 		KC_F  , 		KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  , KC_SCLN,	KC_QUOT,
      KC_LSFT, 	KC_Z	, 		KC_X  , 		KC_C  , 		KC_V  , 		KC_B  ,                         KC_N  , KC_M  ,	KC_COMM,KC_DOT ,KC_SLSH,	CT_RSHFT,
                           		KC_LCTL,		KC_LALT,                                                						_______,		KC_RCTL,
-			                                 	ALT_T(KC_ENT),	LCTL_T(KC_SPACE),                       				KC_SPACE, 		KC_ENT,
+			                                 	LGUI(LSFT(KC_LEFT)),LGUI(LSFT(KC_RGHT)),                       			KC_SPACE, 		KC_ENT,
 			                                  	KC_LBRC,		KC_RBRC,                 								KC_PGUP,  		KC_PGDN,
 			                                  	KC_HOME,		KC_END,                        							KC_LBRC,		KC_DEL
 			  ),
