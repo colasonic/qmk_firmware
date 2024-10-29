@@ -19,6 +19,7 @@ enum custom_keycodes {
   ST_MACRO_11,
   ST_MACRO_12,
   ST_MACRO_13,
+  ST_MACRO_14,
   LLOCK,
 };
 //Tap Dance Declarations
@@ -93,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    	_______,	_______,	_______,			_______, 			_______, 			_______,                  	_______, 	_______, 		_______, 	_______,		_______,	_______,
     _______,	LCTL(KC_Q),	_______,           TD(KC_UP_CTL),       _______,			_______,                    _______,	KC_MS_WH_UP,	KC_MS_UP,	KC_MS_WH_DOWN,	_______,	_______,
   	_______,	LALT(KC_1),	TD(KC_LEFT_CTL),   TD(KC_DOWN_CTL),     TD(KC_RGHT_CTL),	_______,                 	_______,	KC_MS_LEFT,		KC_MS_DOWN,	KC_MS_RIGHT,	_______,	_______,
- 	TO(0)  ,	KC_LSFT,	_______,            _______,            _______,			ST_MACRO_9,               	_______,	_______,		_______,	_______,		_______,	_______,
+ 	TO(0)  ,	KC_LSFT,	_______,            _______,            LALT(KC_DOWN),		ST_MACRO_9,               	_______,	_______,		_______,	_______,		_______,	_______,
                           	_______,            _______,            																		_______,	_______,
                                                	LGUI(LCTL(KC_LEFT)),LGUI(LCTL(KC_RGHT)),            							KC_MS_BTN1,	KC_MS_BTN2,
                                                	_______,			LLOCK,            										KC_PGUP,  	KC_PGDN,
@@ -107,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           		KC_LCTL,		KC_LALT,                                                						_______,		KC_RCTL,
 			                                 	LGUI(LSFT(KC_LEFT)),LGUI(LSFT(KC_RGHT)),                       			KC_SPACE, 		KC_ENT,
 			                                  	KC_LBRC,		KC_RBRC,                 								KC_PGUP,  		KC_PGDN,
-			                                  	KC_HOME,		KC_END,                        							KC_LBRC,		KC_DEL
+			                                  	ST_MACRO_14,	LALT(KC_7),                        						KC_LBRC,		KC_DEL
 			  ),
 };
 
@@ -195,6 +196,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ST_MACRO_13:
     if (record->event.pressed) {
       SEND_STRING(SS_LSFT(SS_TAP(X_F10)) SS_DELAY(100) SS_TAP(X_A));
+
+    }
+    break;
+    case ST_MACRO_14:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_B));
 
     }
     break;
