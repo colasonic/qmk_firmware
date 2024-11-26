@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           		KC_LCTL,		KC_LALT,                                                						_______,		KC_RCTL,
 			                                 	LGUI(LSFT(KC_LEFT)),LGUI(LSFT(KC_RGHT)),                       			KC_SPACE, 		KC_ENT,
 			                                  	KC_LBRC,		KC_RBRC,                 								KC_PGUP,  		KC_PGDN,
-			                                  	ST_MACRO_14,	ST_MACRO_15,                        						KC_LBRC,		KC_DEL
+			                                  	KC_F14,	        KC_F15,                        						KC_LBRC,		KC_DEL
 			  ),
 };
 
@@ -512,15 +512,10 @@ void leader_end_user(void) {
         // Leader, f => Types the below string
         send_string_with_delay(PASSWORD1, 20);
         SEND_STRING(SS_TAP(X_ENTER));
-    } else if (leader_sequence_two_keys(KC_D, KC_D)) {
-        // Leader, d, d => Ctrl+A, Ctrl+C
-        SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
-    } else if (leader_sequence_three_keys(KC_D, KC_D, KC_S)) {
-        // Leader, d, d, s => Types the below string
-        SEND_STRING("https://start.duckduckgo.com\n");
-    } else if (leader_sequence_two_keys(KC_A, KC_S)) {
-        // Leader, a, s => GUI+S
-        tap_code16(LGUI(KC_S));
+    } else if (leader_sequence_one_key(KC_C)) {
+        tap_code(KC_F16);
+    } else if (leader_sequence_one_key(KC_M)) {
+        tap_code(KC_F13);
     } else if (leader_sequence_two_keys(KC_T, KC_T)) {
         send_string_with_delay(PASSWORD2,20);
         SEND_STRING(SS_TAP(X_ENTER));
