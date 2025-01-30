@@ -21,6 +21,8 @@ enum custom_keycodes {
   ST_MACRO_13,
   ST_MACRO_14,
   ST_MACRO_15,
+  ST_MACRO_16,
+  ST_MACRO_17,
   LLOCK,
 };
 //Tap Dance Declarations
@@ -109,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           		KC_LCTL,		KC_LALT,                                                						_______,		KC_RCTL,
 			                                 	LGUI(LSFT(KC_LEFT)),LGUI(LSFT(KC_RGHT)),                       			KC_SPACE, 		KC_ENT,
 			                                  	KC_LBRC,		KC_RBRC,                 								KC_PGUP,  		KC_PGDN,
-			                                  	KC_F14,	        KC_F15,                        						KC_LBRC,		KC_DEL
+			                                  	ST_MACRO_16,	ST_MACRO_17,                        					KC_LBRC,		KC_DEL
 			  ),
 };
 
@@ -210,6 +212,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_C));
 
+    }
+    break;
+    case ST_MACRO_16: //key combo defined in AHK
+    if (record->event.pressed) {
+        register_code(KC_CAPS);
+        tap_code(KC_1);
+        unregister_code(KC_CAPS);
+    }
+    break;
+    case ST_MACRO_17: //key combo defined in AHK
+    if (record->event.pressed) {
+        register_code(KC_CAPS);
+        tap_code(KC_2);
+        unregister_code(KC_CAPS);
     }
     break;
   }
@@ -512,10 +528,14 @@ void leader_end_user(void) {
         // Leader, f => Types the below string
         send_string_with_delay(PASSWORD1, 20);
         SEND_STRING(SS_TAP(X_ENTER));
-    } else if (leader_sequence_one_key(KC_C)) {
-        tap_code(KC_F16);
-    } else if (leader_sequence_one_key(KC_M)) {
-        tap_code(KC_F13);
+    } else if (leader_sequence_one_key(KC_C)) { //key combo defined in AHK
+        register_code(KC_CAPS);
+        tap_code(KC_C);
+        unregister_code(KC_CAPS);
+    } else if (leader_sequence_one_key(KC_M)) { //key combo defined in AHK
+        register_code(KC_CAPS);
+        tap_code(KC_M);
+        unregister_code(KC_CAPS);
     } else if (leader_sequence_two_keys(KC_T, KC_T)) {
         send_string_with_delay(PASSWORD2,20);
         SEND_STRING(SS_TAP(X_ENTER));
