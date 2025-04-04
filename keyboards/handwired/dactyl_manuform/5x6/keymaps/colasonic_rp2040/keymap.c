@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      KC_TILD,	KC_EXLM,	     KC_AT,		    LCTL(LSFT(KC_3)),	LALT(KC_F4) ,		KC_PERC,                    KC_NUM,			KC_SLSH,	KC_ASTR,	KC_LPRN,	KC_RPRN,	KC_DEL,
      KC_CALC,	LALT(KC_3),	     LCTL(KC_W),    LCTL(LSFT(KC_F)),	ST_MACRO_0,			ST_MACRO_1,               	KC_CLR, 			KC_P7 , 	KC_P8 , 	KC_P9 ,		KC_MINS,	KC_PIPE,
-     KC_CAPS,	LALT(KC_1),	     LALT(KC_R),	LALT(KC_S),			LSFT(KC_F9) ,		ST_MACRO_2,               	LCTL(LSFT(KC_M)), 	KC_P4 , 	KC_P5 , 	KC_P6 ,		KC_PLUS,	KC_BSLS,
+     KC_CAPS,	LALT(KC_1),	     LALT(KC_R),	LALT(KC_S),			LSFT(KC_F9),		ST_MACRO_2,               	LCTL(LSFT(KC_M)), 	KC_P4 , 	KC_P5 , 	KC_P6 ,		KC_PLUS,	KC_BSLS,
      TO(0)  ,	DM_RSTP,         ST_MACRO_3,	LCTL(KC_C),			LCTL(LSFT(KC_Y)),	LCTL(KC_V),               	_______, 			KC_P1 , 	KC_P2 , 	KC_P3 ,		KC_EQL ,	KC_UNDS,
                           	     KC_WBAK,		KC_WFWD,              												                        KC_COMM,	KC_DOT,
                                              	ST_MACRO_12,		KC_DELETE,          										KC_P0,		KC_P0,
@@ -238,8 +238,8 @@ void dance_rshft_finished(tap_dance_state_t *state, void *user_data) {
   switch (state->count) {
     case 2: SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_3)); break;
     case 3: SEND_STRING(SS_LALT(SS_TAP(X_Y)) SS_DELAY(100) SS_TAP(X_1) SS_DELAY(100) SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_4)); break;
-    case 4: send_string_with_delay(PASSWORD1,20); SEND_STRING(SS_TAP(X_ENTER)); break; // SEND_STRING(SS_TAP(X_ENTER));
-    case 5: send_string_with_delay(PASSWORD2,20); SEND_STRING(SS_TAP(X_ENTER)); break; // SEND_STRING(SS_TAP(X_ENTER));
+    case 4: send_string_with_delay(PASSWORD1,20); break; // SEND_STRING(SS_TAP(X_ENTER));
+    case 5: send_string_with_delay(PASSWORD2,20); break; // SEND_STRING(SS_TAP(X_ENTER));
     case 6: send_string_with_delay(PASSWORD3,20); break; //old windows password
     case 7: reset_keyboard();
     default: register_code(KC_RSFT);
@@ -541,5 +541,8 @@ void leader_end_user(void) {
         SEND_STRING(SS_TAP(X_ENTER));
     } else if (leader_sequence_one_key(KC_BSPC)) {
         SEND_STRING(SS_LCTL(SS_TAP(X_BSLS)));
+    } else if (leader_sequence_one_key(KC_W)) {
+        // Leader, W => Ctrl+Shift+Space for Whisper Writer activation
+        SEND_STRING(SS_LCTL(SS_LSFT(SS_TAP(X_SPC))));
     }
 }
