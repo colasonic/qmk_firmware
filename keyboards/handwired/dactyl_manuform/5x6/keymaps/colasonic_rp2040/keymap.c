@@ -532,6 +532,10 @@ void leader_end_user(void) {
         register_code(KC_CAPS);
         tap_code(KC_C);
         unregister_code(KC_CAPS);
+    } else if (leader_sequence_one_key(KC_S)) { //key combo defined in AHK
+        register_code(KC_CAPS);
+        tap_code(KC_S);
+        unregister_code(KC_CAPS);
     } else if (leader_sequence_one_key(KC_M)) { //key combo defined in AHK
         register_code(KC_CAPS);
         tap_code(KC_M);
