@@ -541,8 +541,10 @@ void leader_end_user(void) {
         tap_code(KC_M);
         unregister_code(KC_CAPS);
     } else if (leader_sequence_two_keys(KC_T, KC_T)) {
-        send_string_with_delay(PASSWORD2,20);
+        send_string_with_delay(PASSWORD2, 20);
         SEND_STRING(SS_TAP(X_ENTER));
+    } else if (leader_sequence_two_keys(KC_T, KC_S)) {
+        send_string_with_delay(PASSWORD4, 20);
     } else if (leader_sequence_one_key(KC_BSPC)) {
         SEND_STRING(SS_LCTL(SS_TAP(X_BSLS)));
     } else if (leader_sequence_one_key(KC_W)) {
