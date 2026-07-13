@@ -1,0 +1,5 @@
+LEADER_ENABLE = yes
+TAP_DANCE_ENABLE = yes
+AUTO_SHIFT_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = yes
+SRC += features/layer_lock.c
