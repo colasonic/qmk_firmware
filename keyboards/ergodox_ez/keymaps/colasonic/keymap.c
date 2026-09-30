@@ -561,6 +561,8 @@ void leader_end_user(void) {
         send_string_with_delay(PASSWORD4, 20);
     } else if (leader_sequence_one_key(KC_BSPC)) {
         SEND_STRING(SS_LCTL(SS_TAP(X_BSLS)));
+    } else if (leader_sequence_one_key(KC_G)) {
+        send_string_with_delay(PASSWORD5, 20);
     } else if (leader_sequence_one_key(KC_W)) {
         // Leader, W => Ctrl+Shift+Space for Whisper Writer activation
         SEND_STRING(SS_LCTL(SS_LSFT(SS_TAP(X_SPC))));
